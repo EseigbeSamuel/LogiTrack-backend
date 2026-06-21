@@ -11,26 +11,26 @@ public class FleetService : IFleetService
 
     public Task<FleetVehicleDto> CreateVehicleAsync(FleetVehicle vehicle)
     {
-        throw new NotImplementedException();
+        return _fleetRepository.CreateVehicleAsync(vehicle);
     }
 
     public Task<FleetVehicleDto> UpdateVehicleAsync(FleetVehicle vehicle)
     {
-        throw new NotImplementedException();
+        return _fleetRepository.UpdateVehicleAsync(vehicle);
     }
 
     public Task<FleetVehicleDto> GetVehicleByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return _fleetRepository.GetVehicleByIdAsync(id);
     }
 
     public Task<IEnumerable<FleetVehicleDto>> GetAllVehiclesAsync()
     {
-        throw new NotImplementedException();
+        return _fleetRepository.GetAllVehiclesAsync();
     }
 
     public Task<bool> UpdateVehicleStatusAsync(Guid id, string status)
     {
-        throw new NotImplementedException();
+        return _fleetRepository.UpdateVehicleStatusAsync(id, status);
     }
 }

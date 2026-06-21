@@ -1,6 +1,6 @@
 namespace logitrack_api.Modules.Users;
 
-public interface IUserReporsitory
+public interface IUserRepository
 {
     Task<UserDto> GetProfileAsync(string userId);
     Task<UserDto> UpdateProfileAsync(string userId, string name, string email, string phone, string avatar);

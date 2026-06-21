@@ -1,14 +1,21 @@
 namespace logitrack_api.Modules.Users;
 
-public class UserService
+public class UserService : IUserService
 {
+    private readonly IUserRepository _userRepository;
+
+    public UserService(IUserRepository userRepository)
+    {
+        _userRepository = userRepository;
+    }
+
     public Task<UserDto> GetProfileAsync(string userId)
     {
-        throw new NotImplementedException();
+        return _userRepository.GetProfileAsync(userId);
     }
     public Task<UserDto> UpdateProfileAsync(string userId, string name, string email, string phone, string avatar)
     {
-        throw new NotImplementedException();
+        return _userRepository.UpdateProfileAsync(userId, name, email, phone, avatar);
     }
     public Task<UserDto> ChangePasswordAsync(string userId, string currentPassword, string newPassword)
     {
