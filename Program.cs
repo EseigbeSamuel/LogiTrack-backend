@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using logitrack_api.Data;
 using logitrack_api.Modules.Auth;
 using logitrack_api.Modules.Chat;
@@ -9,6 +8,8 @@ using logitrack_api.Modules.Notification;
 using logitrack_api.Modules.Scheduler;
 using logitrack_api.Modules.Setting;
 using logitrack_api.Modules.Users;
+
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,8 +36,8 @@ builder.Services.AddScoped<ISchedulerRepository, SchedulerRepository>();
 builder.Services.AddScoped<ISchedulerService, SchedulerService>();
 builder.Services.AddScoped<ISettingRepository, SettingRepository>();
 builder.Services.AddScoped<ISettingService, SettingService>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UsersRepository>();
+builder.Services.AddScoped<IUsersService, UsersService>();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

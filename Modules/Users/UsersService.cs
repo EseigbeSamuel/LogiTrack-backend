@@ -1,25 +1,27 @@
 using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace logitrack_api.Modules.Users;
 
-public class UserService : IUserService
+public class UsersService : IUsersService
 {
     private readonly IUserRepository _userRepository;
 
-    public UserService(IUserRepository userRepository)
+    public UsersService(IUserRepository userRepository)
     {
         _userRepository = userRepository;
     }
 
-    public async Task<UserDto?> GetProfileAsync(string userId)
+    public async Task<UsersDto?> GetProfileAsync(string userId)
     {
         if (!Guid.TryParse(userId, out var parsedId)) return null;
 
         var user = await _userRepository.GetProfileAsync(parsedId);
         if (user == null) return null;
 
-        return new UserDto
+        return new UsersDto
         {
             Id = user.Id,
             Name = user.Name,
@@ -31,7 +33,7 @@ public class UserService : IUserService
         };
     }
 
-    public async Task<UserDto> UpdateProfileAsync(string userId, string name, string email, string phone, string avatar)
+    public async Task<UsersDto> UpdateProfileAsync(string userId, string name, string email, string phone, string avatar)
     {
         if (!Guid.TryParse(userId, out var parsedId)) throw new ArgumentException("Invalid user ID format");
 
@@ -45,7 +47,7 @@ public class UserService : IUserService
 
         await _userRepository.UpdateProfileAsync(user);
 
-        return new UserDto
+        return new UsersDto
         {
             Id = user.Id,
             Name = user.Name,
@@ -57,38 +59,25 @@ public class UserService : IUserService
         };
     }
 
-    public Task<UserDto> ChangePasswordAsync(string userId, string currentPassword, string newPassword)
+    public async Task<IEnumerable<UsersDto>> GetUsersAsync()
     {
-        throw new NotImplementedException();
+        var users = await _userRepository.GetUsersAsync();
+        return users.Select(user => new UsersDto
+        {
+            Id = user.Id,
+            Name = user.Name,
+            Email = user.Email,
+            Avatar = user.Avatar,
+            IsActive = user.IsActive,
+            CreatedAt = user.CreatedAt,
+            UpdatedAt = user.UpdatedAt
+        });
     }
 
-    public Task<UserDto> ForgotPasswordAsync(string email)
+    public async Task DeleteProfileAsync(string userId)
     {
-        throw new NotImplementedException();
+        if (!Guid.TryParse(userId, out var parsedId)) throw new ArgumentException("Invalid user ID format");
+        await _userRepository.DeleteProfileAsync(parsedId);
     }
 
-    public Task<UserDto> ResetPasswordAsync(string userId, string newPassword)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<UserDto> VerifyEmailAsync(string userId, string token)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<UserDto> VerifyPhoneAsync(string userId, string token)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<UserDto> SendVerificationEmailAsync(string userId)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<UserDto> SendVerificationPhoneAsync(string userId)
-    {
-        throw new NotImplementedException();
-    }
 }

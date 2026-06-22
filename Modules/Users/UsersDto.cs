@@ -1,6 +1,6 @@
 namespace logitrack_api.Modules.Users;
 
-public class UserDto
+public class UsersDto
 {
     public Guid Id { get; set; }
     public string? Name { get; set; }
