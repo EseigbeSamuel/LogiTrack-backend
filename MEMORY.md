@@ -40,3 +40,10 @@ The application is structured in a modular fashion, with each module generally i
 ### 7. Setting
 * **Purpose**: System-wide configuration management.
 * **Features**: Manages global dynamic variables using a key-value store architecture.
+
+## Architectural Decisions
+
+### Clean Architecture Separation (Repositories & Services)
+To maintain clean separation of concerns, the project follows these rules for repositories and services:
+* **Repositories (`IRepository` / `Repository`)**: Handle pure database operations using Entity Framework Core. They interact only with database entities and basic types (e.g. `Guid`). They do **not** handle DTO mapping, validations, business exception raising, or date/time generations.
+* **Services (`IService` / `Service`)**: Contain the core business logic. They process controllers' requests, perform parameter validations, orchestrate CRUD operations through repositories, enforce domain rules (such as setting `UpdatedAt` timestamp or raising business exceptions), and map database entities to/from Data Transfer Objects (DTOs) before returning them to controllers.
