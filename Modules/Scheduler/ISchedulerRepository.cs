@@ -2,9 +2,9 @@ namespace logitrack_api.Modules.Scheduler;
 
 public interface ISchedulerRepository
 {
-    Task<ScheduleDto> CreateScheduleAsync(Schedule schedule);
-    Task<ScheduleDto> UpdateScheduleAsync(Schedule schedule);
-    Task<ScheduleDto> GetScheduleByIdAsync(Guid id);
-    Task<IEnumerable<ScheduleDto>> GetSchedulesByFleetAsync(Guid fleetId);
-    Task<IEnumerable<ScheduleDto>> GetSchedulesByDriverAsync(string driverId);
+    Task<Schedule> CreateScheduleAsync(Schedule schedule);
+    Task UpdateScheduleAsync(Schedule schedule);
+    Task<Schedule?> GetScheduleByIdAsync(Guid id);
+    Task<IEnumerable<Schedule>> GetSchedulesByFleetAsync(Guid fleetId);
+    Task<IEnumerable<Schedule>> GetSchedulesByDriverAsync(string driverId);
 }

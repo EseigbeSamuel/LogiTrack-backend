@@ -12,74 +12,48 @@ public class UserRepository : IUserRepository
         _context = context;
     }
 
-    public async Task<UserDto> GetProfileAsync(string userId)
+    public async Task<User?> GetProfileAsync(Guid userId)
     {
-        if (!Guid.TryParse(userId, out var parsedId)) return null;
-
-        var user = await _context.Users.FindAsync(parsedId);
-        if (user == null) return null;
-
-        return new UserDto
-        {
-            Id = user.Id,
-            Name = user.Name,
-            Email = user.Email,
-            Avatar = user.Avatar,
-            IsActive = user.IsActive,
-            CreatedAt = user.CreatedAt,
-            UpdatedAt = user.UpdatedAt
-        };
+        return await _context.Users.FindAsync(userId);
     }
-    public async Task<UserDto> UpdateProfileAsync(string userId, string name, string email, string phone, string avatar)
+
+    public async Task UpdateProfileAsync(User user)
     {
-        if (!Guid.TryParse(userId, out var parsedId)) return null;
-
-        var user = await _context.Users.FindAsync(parsedId);
-        if (user == null) throw new Exception("User not found");
-
-        user.Name = name;
-        user.Email = email;
-        user.Avatar = avatar;
-        user.UpdatedAt = DateTime.UtcNow;
-
+        _context.Users.Update(user);
         await _context.SaveChangesAsync();
+    }
 
-        return new UserDto
-        {
-            Id = user.Id,
-            Name = user.Name,
-            Email = user.Email,
-            Avatar = user.Avatar,
-            IsActive = user.IsActive,
-            CreatedAt = user.CreatedAt,
-            UpdatedAt = user.UpdatedAt
-        };
-    }
-    public Task<UserDto> ChangePasswordAsync(string userId, string currentPassword, string newPassword)
+    public Task<User> ChangePasswordAsync(Guid userId, string currentPassword, string newPassword)
     {
         throw new NotImplementedException();
     }
-    public Task<UserDto> ForgotPasswordAsync(string email)
+
+    public Task<User> ForgotPasswordAsync(string email)
     {
         throw new NotImplementedException();
     }
-    public Task<UserDto> ResetPasswordAsync(string userId, string newPassword)
+
+    public Task<User> ResetPasswordAsync(Guid userId, string newPassword)
     {
         throw new NotImplementedException();
     }
-    public Task<UserDto> VerifyEmailAsync(string userId, string token)
+
+    public Task<User> VerifyEmailAsync(Guid userId, string token)
     {
         throw new NotImplementedException();
     }
-    public Task<UserDto> VerifyPhoneAsync(string userId, string token)
+
+    public Task<User> VerifyPhoneAsync(Guid userId, string token)
     {
         throw new NotImplementedException();
     }
-    public Task<UserDto> SendVerificationEmailAsync(string userId)
+
+    public Task<User> SendVerificationEmailAsync(Guid userId)
     {
         throw new NotImplementedException();
     }
-    public Task<UserDto> SendVerificationPhoneAsync(string userId)
+
+    public Task<User> SendVerificationPhoneAsync(Guid userId)
     {
         throw new NotImplementedException();
     }

@@ -2,12 +2,12 @@ namespace logitrack_api.Modules.Chat;
 
 public class ChatRepository : IChatRepository
 {
-    public Task<ChatMessageDto> SendMessageAsync(string senderId, string receiverId, string message)
+    public Task<ChatMessage> SendMessageAsync(ChatMessage message)
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<ChatMessageDto>> GetConversationAsync(string userId1, string userId2)
+    public Task<IEnumerable<ChatMessage>> GetConversationAsync(Guid userId1, Guid userId2)
     {
         throw new NotImplementedException();
     }

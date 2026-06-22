@@ -2,17 +2,17 @@ namespace logitrack_api.Modules.Setting;
 
 public class SettingRepository : ISettingRepository
 {
-    public Task<SystemSettingDto> GetSettingByKeyAsync(string key)
+    public Task<SystemSetting?> GetSettingByKeyAsync(string key)
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<SystemSettingDto>> GetAllSettingsAsync()
+    public Task<IEnumerable<SystemSetting>> GetAllSettingsAsync()
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> UpdateSettingAsync(string key, string value)
+    public Task UpdateSettingAsync(SystemSetting setting)
     {
         throw new NotImplementedException();
     }

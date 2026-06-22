@@ -2,57 +2,57 @@ namespace logitrack_api.Modules.Auth;
 
 public class AuthRepository : IAuthRepository
 {
-    public Task<AuthDto> LoginAsync(string email, string password)
+    public Task<Auth?> LoginAsync(string email, string password)
     {
         throw new NotImplementedException();
     }
 
-    public Task<AuthDto> RegisterAsync(string email, string password)
+    public Task<Auth> RegisterAsync(string email, string password)
     {
         throw new NotImplementedException();
     }
 
-    public Task<AuthDto> GetProfileAsync(string userId)
+    public Task<Auth?> GetProfileAsync(Guid userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<AuthDto> UpdateProfileAsync(string userId, string name, string email, string phone, string avatar)
+    public Task UpdateProfileAsync(Auth auth)
     {
         throw new NotImplementedException();
     }
 
-    public Task<AuthDto> ChangePasswordAsync(string userId, string currentPassword, string newPassword)
+    public Task<Auth> ChangePasswordAsync(Guid userId, string currentPassword, string newPassword)
     {
         throw new NotImplementedException();
     }
 
-    public Task<AuthDto> ForgotPasswordAsync(string email)
+    public Task<Auth> ForgotPasswordAsync(string email)
     {
         throw new NotImplementedException();
     }
 
-    public Task<AuthDto> ResetPasswordAsync(string userId, string newPassword)
+    public Task<Auth> ResetPasswordAsync(Guid userId, string newPassword)
     {
         throw new NotImplementedException();
     }
 
-    public Task<AuthDto> VerifyEmailAsync(string userId, string token)
+    public Task<Auth> VerifyEmailAsync(Guid userId, string token)
     {
         throw new NotImplementedException();
     }
 
-    public Task<AuthDto> VerifyPhoneAsync(string userId, string token)
+    public Task<Auth> VerifyPhoneAsync(Guid userId, string token)
     {
         throw new NotImplementedException();
     }
 
-    public Task<AuthDto> SendVerificationEmailAsync(string userId)
+    public Task<Auth> SendVerificationEmailAsync(Guid userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<AuthDto> SendVerificationPhoneAsync(string userId)
+    public Task<Auth> SendVerificationPhoneAsync(Guid userId)
     {
         throw new NotImplementedException();
     }

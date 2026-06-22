@@ -2,12 +2,12 @@ namespace logitrack_api.Modules.Notification;
 
 public class NotificationRepository : INotificationRepository
 {
-    public Task<NotificationDto> SendNotificationAsync(string userId, string title, string message, string type)
+    public Task<Notification> SendNotificationAsync(Notification notification)
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<NotificationDto>> GetUserNotificationsAsync(string userId)
+    public Task<IEnumerable<Notification>> GetUserNotificationsAsync(Guid userId)
     {
         throw new NotImplementedException();
     }
@@ -17,7 +17,7 @@ public class NotificationRepository : INotificationRepository
         throw new NotImplementedException();
     }
 
-    public Task<bool> MarkAllAsReadAsync(string userId)
+    public Task<bool> MarkAllAsReadAsync(Guid userId)
     {
         throw new NotImplementedException();
     }
